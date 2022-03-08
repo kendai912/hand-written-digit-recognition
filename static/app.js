@@ -110,8 +110,12 @@ function handleMouseDown(e) {
 function handleMouseMove(e) {
   if (drawing) {
     let rect = canvas.getBoundingClientRect();
-    let x = Math.max(0, e.clientX - rect.left);
-    let y = Math.max(0, e.clientY - rect.top);
+    let x = e.clientX
+      ? Math.max(0, e.clientX - rect.left)
+      : Math.max(0, e.changedTouches[0].pageX - rect.left);
+    let y = e.clientY
+      ? Math.max(0, e.clientY - rect.top)
+      : Math.max(0, e.changedTouches[0].pageY - rect.top);
     points.push({ x, y });
     draw();
   }
