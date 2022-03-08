@@ -100,6 +100,7 @@ function judge() {
  * マウスダウンのイベントを扱います.
  */
 function handleMouseDown(e) {
+  e.preventDefault();
   drawing = true;
   points = [];
 }
@@ -108,6 +109,7 @@ function handleMouseDown(e) {
  * マウス移動のイベントを扱います.
  */
 function handleMouseMove(e) {
+  e.preventDefault();
   if (drawing) {
     let rect = canvas.getBoundingClientRect();
     let x = e.clientX
@@ -124,7 +126,8 @@ function handleMouseMove(e) {
 /**
  * マウスアップのイベントを扱います.
  */
-function handleMouseUp() {
+function handleMouseUp(e) {
+  e.preventDefault();
   draw();
   drawing = false;
   judge();
